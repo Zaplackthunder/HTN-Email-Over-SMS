@@ -42,13 +42,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link href="http://bootswatch.com/yeti/bootstrap.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
 	</head>
 	<body>
-		<h2>Please fill in your information</h2>
-		<form action="registration.php" method="post">
-			Phone Number: <input type="text" name="phonenumber"><br>
-			<input type="submit" value="submit">Submit</input>
-		</form>
+		<div class="bg">
+			<div class="centered-bg">
+				<h2>Get & Send emails via your SMS Inbox without Wifi</h2>
+				<form class='big-form' action="registration.php" method="post">
+					<label class='text-muted big-label'>Phone Number</label>
+					<div class="phone-num-section">
+						<input class='big-input' type="text" name="phonenumber" placeholder='e.g. 6479995099'>			
+					</div>
+					<div class="submit-section">
+						<input class='btn btn-primary big-button' type="submit" value="Connect to Gmail"></input>
+					</div>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>
 

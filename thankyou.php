@@ -39,8 +39,17 @@ function getData() {
 }
 
 toDB(getData());
-
-echo 'Hello, World!';
-
 ?>
-	
+<html>
+	<head>
+		<link href="http://bootswatch.com/yeti/bootstrap.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="bg">
+			<div class="centered-bg">
+				<h2>Thanks for trying it out!</h2>
+			</div>
+		</div>
+	</body>
+</html>
