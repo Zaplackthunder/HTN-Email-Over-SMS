@@ -1,0 +1,79 @@
+html 
+{
+	height: 100%;
+	width: 100%;
+}
+
+body
+{
+	height: 100%;
+	width: 100%;
+}
+
+.bg
+{
+	width: 100%;
+	height: 100%;
+	background-image: url('bg.jpg');
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	background-color: white;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-color: white;
+	display: table;
+}
+
+.centered-bg
+{
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	color: white;
+}
+
+.big-form
+{
+	max-width: 400px;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.submit-section
+{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.phone-num-section
+{
+	width: 100%;
+}
+
+.big-input 
+{
+	width: 100%;
+	height: 48px;
+	font-size: 18px;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 10px;
+}
+
+.big-label
+{
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+.big-button
+{
+	width: 100%;
+	background: linear-gradient(to bottom, #76d926, #6ac322);
+	height: 50px;
+	font-weight: 700;
+	font-size: 20px;
+}
