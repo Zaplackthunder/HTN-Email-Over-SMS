@@ -1,5 +1,7 @@
 <?php
 
+require_once 'saveToDB.php';
+
 if ( !isset($_SESSION) ) {
 	session_start();
 }
@@ -28,6 +30,10 @@ function getData() {
 	}
 	return false;
 }
+
+toDB(getData());
+
+echo 'Hello, World!';
 
 ?>
 	
