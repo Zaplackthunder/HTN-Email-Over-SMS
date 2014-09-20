@@ -1,7 +1,6 @@
 <?php
 
-	require_once 'Google/Client.php';
-	require_once 'Google/Service/Gmail.php';
+	require_once 'vendor/autoload.php';
 
 	/************************************************
 	  ATTENTION: Fill in these values!
