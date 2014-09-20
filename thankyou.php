@@ -2,6 +2,13 @@
 
 require_once 'saveToDB.php';
 
+if ( $_SERVER['HTTP_HOST'] == "localhost" ) {
+	$domain = "localhost";
+} else {
+	$domain = "geoffhack.ddns.net";
+}
+
+
 if ( !isset($_SESSION) ) {
 	session_start();
 }
@@ -14,7 +21,7 @@ function getData() {
 			"code" => $_REQUEST['code'],
 			"client_id" => "1088708870228-e23b8avbg0v1dfc20b44ltmsksm2048m.apps.googleusercontent.com",
 			"client_secret" => "peH484fr-FyGhisJodNLLqz3",
-			"redirect_uri" => "http://" . $_SERVER['HTTP_HOST'] . "/HTN-Email-Over-SMS/thankyou.php",
+			"redirect_uri" => "http://" . $domain . "/HTN-Email-Over-SMS/thankyou.php",
 			"grant_type" => "authorization_code"
 		);
 		curl_setopt($ch, CURLOPT_URL, $url);
