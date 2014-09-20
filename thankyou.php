@@ -14,7 +14,7 @@ function getData() {
 			"code" => $_REQUEST['code'],
 			"client_id" => "1088708870228-e23b8avbg0v1dfc20b44ltmsksm2048m.apps.googleusercontent.com",
 			"client_secret" => "peH484fr-FyGhisJodNLLqz3",
-			"redirect_uri" => "http://localhost/thankyou.php",
+			"redirect_uri" => "http://" . $_SERVER['HTTP_HOST'] . "/HTN-Email-Over-SMS/thankyou.php",
 			"grant_type" => "authorization_code"
 		);
 		curl_setopt($ch, CURLOPT_URL, $url);

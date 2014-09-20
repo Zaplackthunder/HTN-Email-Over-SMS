@@ -7,7 +7,7 @@
 	 ************************************************/
 	 $client_id = '144543803350-sbqtalh9g4m8pmpqc3k6dhvaa09vkhb3.apps.googleusercontent.com';
 	 $client_secret = 'PIDEfDLhtvzFi3_GHLUI0EF1';
-	 $redirect_uri = 'http://localhost/thankyou.php';
+	 $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/HTN-Email-Over-SMS/thankyou.php';
 
 	/************************************************
 	  Make an API request on behalf of a user. In
@@ -57,7 +57,10 @@
 	</body>
 </html>
 
+
 <?php
+
+
 	if ( isset($_POST['phonenumber']) ) {
 		$_SESSION['phonenumber'] = $_POST['phonenumber'];
 		header("Location: " . $authUrl);
