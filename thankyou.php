@@ -3,12 +3,7 @@
 require_once 'saveToDB.php';
 
 
-if ( $_SERVER['HTTP_HOST'] == "localhost" ) {
-	$domain = "localhost";
-} else {
-	$domain = "geoffhack.ddns.net";
-}
-
+$domain = "localhost";
 
 if ( !isset($_SESSION) ) {
 	session_start();
@@ -35,6 +30,7 @@ function getData() {
 		$stringResult = curl_exec($ch);
 		$result = json_decode($stringResult, true);
 		$result['phone_number'] = $_SESSION['phonenumber'];
+		$result['email_address'] = $_SESSION['email_address'];
 		return $result;
 	}
 	return false;

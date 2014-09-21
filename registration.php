@@ -2,11 +2,7 @@
 
 	require_once 'vendor/autoload.php';
 
-	if ( $_SERVER['HTTP_HOST'] == "localhost" ) {
-		$domain = "localhost";
-	} else {
-		$domain = "geoffhack.ddns.net";
-	}
+	$domain = "localhost";
 
 	/************************************************
 	  ATTENTION: Fill in these values!
@@ -54,6 +50,10 @@
 					<div class="phone-num-section">
 						<input class='big-input' type="text" name="phonenumber" placeholder='e.g. 6479995099'>			
 					</div>
+					<label class='text-muted big-label'>Email Address</label>
+					<div class="phone-num-section">
+						<input class='big-input' type="text" name="email_address" placeholder='e.g. mygmail@gmail.com'>			
+					</div>
 					<div class="submit-section">
 						<input class='btn btn-primary big-button' type="submit" value="Connect to Gmail"></input>
 					</div>
@@ -66,8 +66,9 @@
 
 <?php
 
-	if ( isset($_POST['phonenumber']) ) {
+	if ( isset($_POST['phonenumber']) and isset($_POST['email_address']) ) {
 		$_SESSION['phonenumber'] = $_POST['phonenumber'];
+		$_SESSION['email_address'] = $_POST['email_address'];
 		header("Location: " . $authUrl);
 	}
 ?>

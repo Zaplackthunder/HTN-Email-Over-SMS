@@ -5,11 +5,11 @@
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		$pnum=$object['phone_number'];
-		//$mailaddr=$object['email'];
+		$mailaddr=$object['email_address'];
 		$accesstoken=$object['access_token'];
 		$renewtoken=$object['refresh_token'];
 		$timestamp = date('Y-m-d G:i:s');
-		$sql = "INSERT INTO MailList (Phone, RefreshToken, AccessToken, LastUpdated) VALUES ('$pnum','$renewtoken', '$accesstoken', '$timestamp')";
+		$sql = "INSERT INTO MailList (Phone, Mail, RefreshToken, AccessToken, LastUpdated) VALUES ('$pnum', '$mailaddr', '$renewtoken', '$accesstoken', '$timestamp')";
 		if (!mysqli_query($con,$sql)){
 			die('Error: ' . mysqli_error($con));
 		}
