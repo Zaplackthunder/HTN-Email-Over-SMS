@@ -2,7 +2,7 @@
 
 	require_once 'vendor/autoload.php';
 
-	$domain = "localhost";
+	$domain = $_SERVER['HTTP_HOST'];
 
 	/************************************************
 	  ATTENTION: Fill in these values!

@@ -3,7 +3,7 @@
 require_once 'saveToDB.php';
 
 
-$domain = "localhost";
+$domain = $_SERVER['HTTP_HOST'];
 
 if ( !isset($_SESSION) ) {
 	session_start();

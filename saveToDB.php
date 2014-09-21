@@ -1,6 +1,6 @@
 <?php
 	function toDB($object){
-		$con=mysqli_connect($_SERVER['HTTP_HOST'],"root","","my_db");
+		$con=mysqli_connect($_SERVER['HTTP_HOST'], "HTN","1234","my_db");
 		if (mysqli_connect_errno()) {
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
