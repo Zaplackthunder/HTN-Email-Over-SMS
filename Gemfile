@@ -40,3 +40,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 # Oauth2 client
 gem "omniauth-google-oauth2", "~> 0.2.1"
+
+# Twilio
+gem 'twilio-ruby'

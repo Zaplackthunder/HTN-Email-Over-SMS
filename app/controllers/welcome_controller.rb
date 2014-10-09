@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+
   def index
   end
 
@@ -8,7 +9,6 @@ class WelcomeController < ApplicationController
   end
 
   def create
-
     access_token = request.env["omniauth.auth"]['credentials']['token'];
     refresh_token = request.env["omniauth.auth"]['credentials']['refresh_token'];
     email = access_token = request.env["omniauth.auth"]['info']['email'];

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/auth/google_oauth2/callback' => 'welcome#create'
 
+  get '/smsrequest' => 'smsresponder#main'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
