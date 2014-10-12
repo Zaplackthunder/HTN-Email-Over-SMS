@@ -11,14 +11,13 @@ class WelcomeController < ApplicationController
   def create
     access_token = request.env["omniauth.auth"]['credentials']['token'];
     refresh_token = request.env["omniauth.auth"]['credentials']['refresh_token'];
-    email = access_token = request.env["omniauth.auth"]['info']['email'];
+    email = request.env["omniauth.auth"]['info']['email'];
+    phonenumber = session[:phonenumber]
 
-  	@newuser = User.new(:access_token => access_token, 
-                        :phonenumber => session[:phonenumber],
-                        :refresh_token => refresh_token,
-                        :email => email)
-    @newuser.save
-  	render :plain => 'Thank you!'
+    User.insert(access_token, refresh_token, phonenumber, email)
+
+    render :plain => 'Thank you!'
+
   end
 
 end
