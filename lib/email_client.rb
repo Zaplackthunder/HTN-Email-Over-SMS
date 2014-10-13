@@ -1,4 +1,5 @@
 require 'net/http'
+require 'json'
 
 class EmailClient
 
@@ -20,15 +21,21 @@ class EmailClient
 	def sanitize_access_tokens(model)
           model_timestamp = model.updated_at
 		if ( Time.now.to_i - model_timestamp.to_i > 3600 ) then
-                        puts ENV['GOOGLE_CLIENT_ID']
-			response = post_https_request(@@GOOGLE_REFRESH_TOKEN_URL, {
-				'client_id' => ENV['GOOGLE_CLIENT_SECRET'],
-				'client_secret' => ENV['GOOGLE_CLIENT_ID'],
+                        begin 
+                          response = post_https_request(@@GOOGLE_REFRESH_TOKEN_URL, {
+				'client_id' => ENV['GOOGLE_CLIENT_ID'],
+				'client_secret' => ENV['GOOGLE_CLIENT_SECRET'],
 				'refresh_token' => model.refresh_token,
 				'grant_type' => 'refresh_token'
-			})
-                        puts response.body
-			model.update(:access_token => response.body.access_token)
+                                                        })
+                          response.value # should raise error if http status not 2xx
+                          response_body = JSON.parse(response.body)
+                          model.update(:access_token => response_body['access_token'])
+                        rescue Exception => e
+                          puts 'Something went wrong refreshing tokens'
+                          puts e.message
+                          puts e.backtrace.inspect
+                        end
 		else 
 			puts "tokens good"
 		end
@@ -39,9 +46,12 @@ class EmailClient
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = true
 		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+                http.set_debug_output($stdout)
 
 		request = Net::HTTP::Post.new(uri.request_uri)
 		request.set_form_data(params)
+
+                
 
 		response = http.request(request)
 		return response
