@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005210418) do
+ActiveRecord::Schema.define(version: 20141013015449) do
+
+  create_table "unverified_users", force: true do |t|
+    t.string   "verification_code"
+    t.string   "phone_number"
+    t.boolean  "verified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
-    t.string   "phonenumber"
+    t.string   "phone_number"
     t.string   "email"
     t.string   "access_token"
     t.string   "refresh_token"

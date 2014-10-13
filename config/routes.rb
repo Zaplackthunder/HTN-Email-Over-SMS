@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  post '/register' =>'welcome#store_phonenumber'
+  post '/create_unverified_user' =>'welcome#create_unverified_user'
 
-  get '/auth/google_oauth2/callback' => 'welcome#create'
+  post '/verify' => 'welcome#verify'
+
+  get '/auth/google_oauth2/callback' => 'welcome#create_user'
 
   get '/smsrequest' => 'smsresponder#main'
 

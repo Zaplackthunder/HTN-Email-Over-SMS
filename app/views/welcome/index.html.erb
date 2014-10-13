@@ -1,10 +1,10 @@
 <div class="bg">
 	<div class="centered-bg">
 		<h2>Get & Send emails via your SMS Inbox without Wifi</h2>
-		<%= form_for :user, :url => '/register', :html => {:class => 'big-form'} do |u| %>
+		<%= form_for :user, :url => '/create_unverified_user', :html => {:class => 'big-form', :id => 'create_unverified_user_form'} do |u| %>
 			<label class='text-muted big-label'>Phone Number</label>
 			<div class="phone-num-section"> 
-				<%= u.text_field :phonenumber, :class => 'big-input', :placeholder => '645 823 9098' %> 
+				<%= u.text_field :phone_number, :class => 'big-input', :placeholder => '+16458239098' %> 
 			</div>
 			<div class="submit-section">
 				<%= u.submit :class=> 'btn btn-primary big-button', :value => 'Connect to Gmail' %>
