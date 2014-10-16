@@ -46,3 +46,6 @@ gem 'twilio-ruby'
 
 # Json
 gem 'json', '~> 1.8.1'
+
+# Font Awesome
+gem 'font-awesome-rails'

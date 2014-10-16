@@ -15,10 +15,7 @@ class SmsresponderController < ApplicationController
 		user = User.find_by( :phone_number => params['From'].to_s )
 		if user != nil then
 		else
-			unverified_user = UnverifiedUser.find_by( :phone_number => params['From'].to_s )
-			if unverified_user != nil then
-			else
-			end
+
 		end
 		
 		messages = @email_client.getMessageList(user, Time.now - 7*24*60*60)

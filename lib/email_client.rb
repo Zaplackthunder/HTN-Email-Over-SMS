@@ -18,6 +18,7 @@ class EmailClient
 		return {'test' => 'test'}
 	end
 
+	# to do, put this into an oauth client class
 	def sanitize_access_tokens(model)
           model_timestamp = model.updated_at
 		if ( Time.now.to_i - model_timestamp.to_i > 3600 ) then

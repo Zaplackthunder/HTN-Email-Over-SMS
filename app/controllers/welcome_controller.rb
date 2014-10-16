@@ -1,3 +1,5 @@
+require 'twilio-ruby'
+
 class WelcomeController < ApplicationController
 
   def index
@@ -12,14 +14,29 @@ class WelcomeController < ApplicationController
 
     UnverifiedUser.insert(session[:verification_code], session[:phone_number], false)
 
-    render :json => {:verification_code => session[:verification_code]}, :status => :ok
+    # TODO: put into twilio client class and make it a singleton
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
+    begin
+        client = Twilio::REST::Client.new account_sid, auth_token
+        client.account.messages.create(
+          from => ENV['TWILIO_PHONE_NUMBER'],
+          to => session[:phone_number],
+          body => "Thanks for signing up with Dodo! Please enter the pin " + session[:verification_code] + " to get started. If you did not register, please ignore this message."
+        )
+    rescue Twilio::REST::RequestError => e
+        puts e.message
+    end
+
+    render :json => {}, :status => :ok
+
   end
 
   def verify
     unverified_user = UnverifiedUser.find_by( :phone_number => session[:phone_number] )
     if unverified_user.verification_code == params[:verification_code] then
       unverified_user.update(:verified => true)
-      render :plain => "Success", :status => :ok
+      redirect_to '/auth/google_oauth2'
     else
       render :plain => "Failure", :status => :bad_request
     end
