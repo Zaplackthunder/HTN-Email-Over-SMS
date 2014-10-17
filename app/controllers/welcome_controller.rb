@@ -5,6 +5,8 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  # todo: delete all unverified users after 60 seconds of creation
+  # todo: store id of unverified_user in the stead of phone numbers, in case someone duplicates phone number
   def create_unverified_user
     session[:phone_number] = params[:user]['phone_number']
     session[:verification_code] = "";
@@ -20,9 +22,9 @@ class WelcomeController < ApplicationController
     begin
         client = Twilio::REST::Client.new account_sid, auth_token
         client.account.messages.create(
-          from => ENV['TWILIO_PHONE_NUMBER'],
-          to => session[:phone_number],
-          body => "Thanks for signing up with Dodo! Please enter the pin " + session[:verification_code] + " to get started. If you did not register, please ignore this message."
+          :from => ENV['TWILIO_PHONE_NUMBER'],
+          :to => session[:phone_number],
+          :body => "Thanks for signing up with Dodo! Please enter the pin " + session[:verification_code] + " to get started. If you did not register, please ignore this message."
         )
     rescue Twilio::REST::RequestError => e
         puts e.message
@@ -36,7 +38,7 @@ class WelcomeController < ApplicationController
     unverified_user = UnverifiedUser.find_by( :phone_number => session[:phone_number] )
     if unverified_user.verification_code == params[:verification_code] then
       unverified_user.update(:verified => true)
-      redirect_to '/auth/google_oauth2'
+      render :plain => "Please go to /auth/google_oauth2 to complete registration", :status => :ok
     else
       render :plain => "Failure", :status => :bad_request
     end

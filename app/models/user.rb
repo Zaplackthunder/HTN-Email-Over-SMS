@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
-	def self.insert(phone_number, emailaccess_token, refresh_token)
+	def self.insert(phone_number, email, access_token, refresh_token)
   		@newuser = User.new(:access_token => access_token, 
-                       	 	:phone_number => phonenumber,
+                       	 	:phone_number => phone_number,
                         	:refresh_token => refresh_token,
                         	:email => email)
   		@newuser.save
